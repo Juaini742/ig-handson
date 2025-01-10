@@ -1,45 +1,83 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { View, Text, Platform, Image } from "react-native";
+import React from "react";
+import { Tabs } from "expo-router";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+const screens = [
+  {
+    name: "index",
+    icon: require("@/assets/images/home.png"),
+  },
+  {
+    name: "explore/index",
+    icon: require("@/assets/images/search.png"),
+  },
+  {
+    name: "new-post/index",
+    icon: require("@/assets/images/more.png"),
+  },
+  {
+    name: "reels/index",
+    icon: require("@/assets/images/video.png"),
+  },
+  {
+    name: "profile/index",
+    icon: require("@/assets/images/user.png"),
+  },
+];
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
+        tabBarShowLabel: false,
         tabBarStyle: Platform.select({
+          android: {
+            position: "absolute",
+            height: 50,
+            borderTopWidth: 0,
+            paddingTop: 5,
+            backgroundColor: "#1a1c2e",
+          },
           ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
+            position: "absolute",
+            height: 50,
+            borderTopWidth: 0,
+            paddingTop: 5,
+            backgroundColor: "black",
           },
           default: {},
         }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+      }}
+    >
+      {screens.map((screen) => (
+        <Tabs.Screen
+          key={screen.name}
+          name={screen.name}
+          options={{
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarIcon: ({ focused }) => (
+              <View
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: 10,
+                }}
+              >
+                <Image
+                  source={screen.icon}
+                  style={{
+                    width: 25,
+                    height: 25,
+                    tintColor: focused ? "white" : "gray",
+                  }}
+                />
+              </View>
+            ),
+          }}
+        />
+      ))}
     </Tabs>
   );
 }
