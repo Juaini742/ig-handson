@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, Image, FlatList } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { stories } from "@/assets/data/content";
-import { LinearGradient } from "expo-linear-gradient";
 import { BaseStyleSheet } from "@/constants/BaseStyle";
+import { Link } from "expo-router";
+import Avatar from "../Avatar";
 
 export default function HeaderSection() {
   return (
@@ -22,34 +23,36 @@ export default function HeaderSection() {
           style={{ width: 120, height: 50, tintColor: "white" }}
         />
         <View style={{ flexDirection: "row", gap: 20 }}>
-          <TouchableOpacity>
+          <Link href={"/(modals)/notification"}>
             <AntDesign name="hearto" size={22} color="white" />
-          </TouchableOpacity>
-          <TouchableOpacity style={{ position: "relative" }}>
-            <Image
-              source={require("@/assets/images/messenger.png")}
-              style={{ width: 22, height: 22, tintColor: "white" }}
-            />
-            <View
-              style={{
-                position: "absolute",
-                top: -5,
-                right: -7,
-                width: 15,
-                height: 15,
-                borderRadius: 100,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "red",
-              }}
-            >
-              <Text
-                style={{ fontSize: 10, color: "white", fontWeight: "bold" }}
+          </Link>
+          <Link href={"/(modals)/messenger"}>
+            <View style={{ position: "relative" }}>
+              <Image
+                source={require("@/assets/images/messenger.png")}
+                style={{ width: 22, height: 22, tintColor: "white" }}
+              />
+              <View
+                style={{
+                  position: "absolute",
+                  top: -5,
+                  right: -7,
+                  width: 15,
+                  height: 15,
+                  borderRadius: 100,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "red",
+                }}
               >
-                2
-              </Text>
+                <Text
+                  style={{ fontSize: 10, color: "white", fontWeight: "bold" }}
+                >
+                  2
+                </Text>
+              </View>
             </View>
-          </TouchableOpacity>
+          </Link>
         </View>
       </View>
 
@@ -80,61 +83,7 @@ export default function HeaderSection() {
                   <Text style={{ fontSize: 23, color: "white" }}>+</Text>
                 </View>
               )}
-              <TouchableOpacity
-                style={{
-                  alignItems: "center",
-                  width: 90,
-                  height: 90,
-                  borderRadius: "100%",
-                  overflow: "hidden",
-                  marginHorizontal: 5,
-                  marginBottom: 5,
-                }}
-              >
-                <LinearGradient
-                  colors={["#ffca5f", "#c6092f"]}
-                  start={{ x: 0, y: 1 }}
-                  end={{ x: 1, y: 0 }}
-                  style={[
-                    BaseStyleSheet.heightAndWidth100,
-                    {
-                      justifyContent: "center",
-                      alignItems: "center",
-                      padding: 3,
-                      marginBottom: 5,
-                    },
-                  ]}
-                >
-                  <View
-                    style={[
-                      BaseStyleSheet.heightAndWidth100,
-                      {
-                        backgroundColor: "black",
-                        borderRadius: "100%",
-                        marginHorizontal: 10,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        padding: 5,
-                      },
-                    ]}
-                  >
-                    <View
-                      style={[
-                        BaseStyleSheet.heightAndWidth100,
-                        {
-                          borderRadius: 100,
-                          overflow: "hidden",
-                        },
-                      ]}
-                    >
-                      <Image
-                        source={item.image}
-                        style={BaseStyleSheet.heightAndWidth100}
-                      />
-                    </View>
-                  </View>
-                </LinearGradient>
-              </TouchableOpacity>
+              <Avatar image={item.image} size={90} />
               <Text style={{ color: "white", fontSize: 12 }}>{item.name}</Text>
             </View>
           )}

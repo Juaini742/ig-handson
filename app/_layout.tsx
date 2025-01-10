@@ -1,9 +1,12 @@
+import { UserProvider, useUser } from "@/hooks/useUser";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
 import "react-native-reanimated";
+
+const modals = ["(modals)/notification", "(modals)/messenger"];
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,14 +25,39 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootNavItem />;
+  return (
+    <UserProvider>
+      <RootNavItem />
+    </UserProvider>
+  );
 }
 
 const RootNavItem = () => {
+  const router = useRouter();
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user?.token === null) {
+      router.replace("/(auth)/login");
+    }
+  }, []);
+
   return (
     <React.Fragment>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)/login" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)/register" options={{ headerShown: false }} />
+        {modals.map((modal) => (
+          <Stack.Screen
+            key={modal}
+            name={modal}
+            options={{
+              presentation: "modal",
+            }}
+          />
+        ))}
+
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar backgroundColor="black" />

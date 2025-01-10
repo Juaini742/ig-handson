@@ -46,7 +46,9 @@ export default function TabsLayout() {
             paddingTop: 5,
             backgroundColor: "black",
           },
-          default: {},
+          default: {
+            backgroundColor: "black",
+          },
         }),
       }}
     >

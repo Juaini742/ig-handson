@@ -60,3 +60,76 @@ export const stories = [
     type: "OTHER",
   },
 ];
+
+export const notifications = [
+  {
+    id: 1,
+    image: require("@/assets/images/naruto.jpg"),
+    username: "sasuke_uchiha",
+    message: "Liked your post.",
+    isFollowing: true,
+  },
+  {
+    id: 2,
+    image: require("@/assets/images/naruto.jpg"),
+    username: "kakashi_hatake",
+    message: "Commented: 'Great photo!'",
+    isFollowing: false,
+  },
+  {
+    id: 3,
+    image: require("@/assets/images/naruto.jpg"),
+    username: "sakura_haruno",
+    message: "Started following you.",
+    isFollowing: true,
+  },
+  {
+    id: 4,
+    image: require("@/assets/images/naruto.jpg"),
+    username: "itachi_uchiha",
+    message: "Shared your story.",
+    isFollowing: false,
+  },
+  {
+    id: 5,
+    image: require("@/assets/images/naruto.jpg"),
+    username: "hinata_hyuga",
+    message: "Mentioned you in a comment.",
+    isFollowing: true,
+  },
+  {
+    id: 6,
+    image: require("@/assets/images/naruto.jpg"),
+    username: "shikamaru_nara",
+    message: "Liked your story.",
+    isFollowing: false,
+  },
+  {
+    id: 7,
+    image: require("@/assets/images/naruto.jpg"),
+    username: "gaara_sabaku",
+    message: "Sent you a message.",
+    isFollowing: true,
+  },
+  {
+    id: 8,
+    image: require("@/assets/images/naruto.jpg"),
+    username: "rock_lee",
+    message: "Tagged you in a post.",
+    isFollowing: false,
+  },
+  {
+    id: 9,
+    image: require("@/assets/images/naruto.jpg"),
+    username: "jiraiya_sannin",
+    message: "Liked your photo.",
+    isFollowing: true,
+  },
+  {
+    id: 10,
+    image: require("@/assets/images/naruto.jpg"),
+    username: "tsunade_hokage",
+    message: "Reacted to your comment.",
+    isFollowing: true,
+  },
+];

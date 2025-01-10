@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function NewPostScreen() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
       <View
         style={{
           flex: 1,
